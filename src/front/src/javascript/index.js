@@ -1,29 +1,56 @@
-$(document).ready(function() {
-    function mostrarMensaje() {
-        alert("¡Has pulsado el botón!");
-    }
-    
-    function cambiarColor() {
-        document.body.style.backgroundColor = "#f0f0f0"; // Cambia el fondo a gris claro
-    }
-    
-    function mostrarTexto() {
-        document.getElementById("mensaje").innerText = "¡El botón fue pulsado!";
-    }
-    
-    // Función que ejecutará todas las anteriores
-    function ejecutarFunciones() {
-        mostrarMensaje();
-        cambiarColor();
-        mostrarTexto();
-    }
-    
-    // Añadir el evento de clic al botón una vez que la página haya cargado
-    window.onload = function() {
-        var boton = document.getElementById("Boton1");
-        boton.addEventListener("click", ejecutarFunciones);
+console.log("Damos comienzo a la pagina...")
+$.get("http://localhost:1234/api/productos")
+
+$(document).ready(function () {
+
+    function resetearListado() {
+
+        $.get("http://my-json-server.typicode.com/desarrollo-seguro/dato/solicitudes",
+            function (result) {
+
+                $.get("http://localhost:1234/api/productos", function (data) {
+
+                    console.log(data);
+
+                    let $padre = $('#listado');
+                    let $maestro = $("maestro");
+
+                    $padre.empty();
+
+                    data.forEach(x => {
+                        console.log("Processing item:", x);
+                        let $linea = $('<tr>');
+                        $linea.append($('<td class="renglon mt-3 md-3" style=display:none>').text(x.id));
+                        $linea.append($('<td class="renglon mt-3 md-3">').text(x.nombre));
+                        $linea.append($('<td class="renglon mt-3md-3">').text(x.descripcion));
+                        $linea.append($('<td class="renglon mt-3md-3">').text(x.cantidad));
+                        $linea.append($('<td class="renglon mt-3md-3">').text(x.precio));;
+                        $padre.append($linea);
+                        
+                    });
+                    
+                    $maestro.show();
+                    $padre.show();
+                    console.log("Refrescaso de tabla ejecutado");
+
+                }).fail(function () {
+
+                    console.log("Error");
+                });
+
+            });
+
+        window.refrescarListado = resetearListado;
+
+       
     };
 
-})
+    $("#boton_lista").on("click", function () {
+
+        resetearListado();
+
+    });
+
+
 
 
