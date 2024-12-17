@@ -19,3 +19,8 @@ para levantar servidor:
 ```sh
 npm run server 
 ```
+
+
+´´´sh npm init -y npm install npm install jquery npm install parcel npm install bootstrap@3.4.1
+
+´´´
