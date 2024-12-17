@@ -4,6 +4,10 @@ import io.micrometer.common.lang.NonNull;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
+/*
+Los arrobas que no hemos visto de este fichero sirven para controlar lalogica de una forma transversal para validar a la entidad del productos 
+*/
+
 public class Producto {
     private long id;
 

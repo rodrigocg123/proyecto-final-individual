@@ -20,10 +20,10 @@ import es.santander.ascender.individual.model.Producto;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(path = "/productos")
+@RequestMapping(path = "/productos") //cambiar a nuestro gusto el nombre /productos.
 public class ProductoController {
 
-    private Map<Long, Producto> productos = new HashMap<>();
+    private Map<Long, Producto> productos = new HashMap<>();//Mapa para  simular una base de datos 
 
     public ProductoController() {
         productos.put(1l, new Producto(1, "Producto A", "Descripción A", 100.0f, 10));
@@ -32,7 +32,9 @@ public class ProductoController {
 
 
     @GetMapping("/{id}")
-    public HttpEntity<Producto> get(@PathVariable("id") long id) {
+    public HttpEntity<Producto> get(@PathVariable("id") long id) { 
+    //Httpentity es una clase que dentro contiene lo que tu quieres devolver pero tambien puedes controlar lo que tienes dentro 
+
         if (!productos.containsKey(id)) {
             return ResponseEntity.notFound().build();
         } else {
@@ -41,7 +43,7 @@ public class ProductoController {
     }
 
     @GetMapping
-    public HttpEntity<Collection<Producto>> get() {
+    public HttpEntity<Collection<Producto>> get() { //
         return ResponseEntity.ok().body(productos.values());
     }
 
