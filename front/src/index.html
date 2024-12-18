@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercañeda</title>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="./javascript/index.js"></script>
+    <style>
+        /*
+         Estilos y colores para los botones 
+         */
+        button {
+            width: 70%;
+            height: 300px;
+            font-size: 50px;
+            margin: 0px;
+            border-radius: 5px;
+            display: block;
+            color: black;
+        }
+        .contenedor {
+            display: flex;
+        }
+        .green {
+            background-color: rgb(110, 219, 110);
+        }
+        .yellow {
+            background-color: rgb(206, 206, 95);
+        }
+        .red {
+            background-color: rgb(218, 76, 76);
+        }
+        /*
+         Estilos para las listas de maestro-detalle 
+         */
+        .maestro-detalle {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .maestro {
+            width: 200px;
+        }
+
+        .detalle {
+            width: 300px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+            cursor: pointer; /* Para hacerlos parecer botones */
+        }
+        li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mercañeda</h1>
+    <h2>¡¡¡La Web que revoluciona tu metodo de hacer la compra!!!</h2>
+
+    <!-- Botones -->
+    <div class="contenedor">
+        <button id="boton1" class="green" onclick="MostrarMensaje('producto1')">ALIMENTOS A</button>
+        <button id="boton2" class="yellow" onclick="MostrarMensaje('producto2')">ALIMENTOS B</button>
+        <button id="boton3" class="red" onclick="MostrarMensaje('producto3')">ALIMENTOS C</button>
+    </div>
+
+    <!-- Maestro-detalle con listas -->
+    <div class="maestro-detalle">
+        <!-- Lista Maestro -->
+        <div class="maestro">
+            <h2>Lista de Elementos</h2>
+            <ul id="listaElementos">
+                <li data-id="1">Elemento 1</li>
+                <li data-id="2">Elemento 2</li>
+                <li data-id="3">Elemento 3</li>
+                <li data-id="4">Elemento 4</li>
+            </ul>
+        </div>
+
+        <!-- Lista Detalle -->
+        <div class="detalle">
+            <h2>Detalles del Elemento</h2>
+            <ul id="detalleElemento">
+                <!-- Aquí se actualizarán los detalles dinámicamente -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo para los productos
+        const productos = {
+            producto1: [
+                { id: 1, detalle: "Detalle del Elemento 1 de Producto A" },
+                { id: 2, detalle: "Detalle del Elemento 2 de Producto A" },
+                { id: 3, detalle: "Detalle del Elemento 3 de Producto A" },
+                { id: 4, detalle: "Detalle del Elemento 4 de Producto A" }
+            ],
+            producto2: [
+                { id: 1, detalle: "Detalle del Elemento 1 de Producto B" },
+                { id: 2, detalle: "Detalle del Elemento 2 de Producto B" },
+                { id: 3, detalle: "Detalle del Elemento 3 de Producto B" },
+                { id: 4, detalle: "Detalle del Elemento 4 de Producto B" }
+            ],
+            producto3: [
+                { id: 1, detalle: "Detalle del Elemento 1 de Producto C" },
+                { id: 2, detalle: "Detalle del Elemento 2 de Producto C" },
+                { id: 3, detalle: "Detalle del Elemento 3 de Producto C" },
+                { id: 4, detalle: "Detalle del Elemento 4 de Producto C" }
+            ]
+        };
+
+        // Función para mostrar detalles según el producto
+        function MostrarMensaje(producto) {
+            // Cambiar los detalles de la lista dependiendo del producto seleccionado
+            const listaDetalles = productos[producto];
+            const listaDetalleElemento = document.getElementById("detalleElemento");
+
+            // Limpiar los detalles anteriores
+            listaDetalleElemento.innerHTML = '';
+
+            // Mostrar los nuevos detalles
+            listaDetalles.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item.detalle;
+                listaDetalleElemento.appendChild(li);
+            });
+        }
+
+        // Función para manejar los clics en los elementos de la lista "Lista de Elementos"
+        const listaElementos = document.getElementById("listaElementos");
+        listaElementos.addEventListener("click", function(e) {
+            if (e.target.tagName === "LI") {
+                const itemId = e.target.getAttribute("data-id");
+                alert("Has seleccionado el Elemento con ID: " + itemId);
+            }
+        });
+    </script>
+
+</body>
+</html>
