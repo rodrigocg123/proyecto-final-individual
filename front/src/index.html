@@ -7,9 +7,15 @@
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="./javascript/index.js"></script>
     <style>
-        /*
-         Estilos y colores para los botones 
-         */
+        
+         /* Estilos y colores para los botones  */    
+
+        body{
+
+            margin: 0;
+            padding: 0;
+        }
+
         button {
             width: 70%;
             height: 300px;
@@ -31,15 +37,18 @@
         .red {
             background-color: rgb(218, 76, 76);
         }
-        /*
+        /* /*
          Estilos para las listas de maestro-detalle 
          */
-        .maestro-detalle {
-            display: flex;
+         .maestro-detalle {
+            position:right;
+            display: center;
             justify-content: space-between;
         }
 
         .maestro {
+            position: center
+            ;
             width: 200px;
         }
 
@@ -58,16 +67,48 @@
             margin-bottom: 5px;
             cursor: pointer; /* Para hacerlos parecer botones */
         }
-        li:hover {
-            background-color: #f0f0f0;
+         li:hover {
+            background-color: rgb(136, 223, 136);
+        }
+        /* para centrar el texto */
+        .centrado1{
+            background-color: rgb(179, 189, 162);
+            top: 0;
+            left: 0;
+            width: 100%
+            margin 0;
+            text-align: center;
+            font-size: 200;
+            border-color: black;
+            color: green;
+        }
+        .centrado2 {
+            text-align: center;
+            font-size: 100;
+            background-color: #ddd;
+            margin-top: 30px;
+
+        }
+        .section-1 {
+        background-color: #4CAF50; /* Fondo verde */
+         color: white;  /* Texto blanco */
+         padding: 50px;
+        text-align: center;
+        } 
+        .titulo {
+            background-color: black;
+            margin-top: 0px;
         }
     </style>
-</head>
+</head> 
 <body>
-
-    <h1>Mercañeda</h1>
-    <h2>¡¡¡La Web que revoluciona tu metodo de hacer la compra!!!</h2>
-
+    
+    <header class="centrado1">MERCAÑEDA</header>
+   
+    <h1 class="centrado2">¡¡¡La Web que revolucionara tu forma de administrar tu nutricion!!!</h1>
+    <!-- </section> -->
+   
+   
     <!-- Botones -->
     <div class="contenedor">
         <button id="boton1" class="green" onclick="MostrarMensaje('producto1')">ALIMENTOS A</button>
@@ -81,7 +122,7 @@
         <div class="maestro">
             <h2>Lista de Elementos</h2>
             <ul id="listaElementos">
-                <li data-id="1">Elemento 1</li>
+                <li data-id="1">PIZZA</li>
                 <li data-id="2">Elemento 2</li>
                 <li data-id="3">Elemento 3</li>
                 <li data-id="4">Elemento 4</li>
@@ -96,25 +137,35 @@
             </ul>
         </div>
     </div>
-
+   
+    <aside>
+        <h3>NOTICIAS SEMANALES PARA MEJORAR TU NUTRICION</h3>
+        <ul>
+            <li><a href="https://cuidateplus.marca.com/alimentacion/nutricion.html">Noticia 1</a></li>
+            <li><a href="https://www.20minutos.es/salud/nutricion/nutricionista-habitos-alimenticios-incluir-tu-rutina-5650166/">Noticia 2</a></li>
+            <li><a href="https://www.20minutos.es/salud/nutricion/superalimento-quinoa-grano-musculo-adelgaza-rejuvenece-salud-5116402/">Noticia 3</a></li>
+        </ul>
+    </aside>
+   
+    
     <script>
         // Datos de ejemplo para los productos
         const productos = {
-            producto1: [
+            productosA: [
                 { id: 1, detalle: "Detalle del Elemento 1 de Producto A" },
                 { id: 2, detalle: "Detalle del Elemento 2 de Producto A" },
                 { id: 3, detalle: "Detalle del Elemento 3 de Producto A" },
                 { id: 4, detalle: "Detalle del Elemento 4 de Producto A" }
             ],
-            producto2: [
+            productoaB: [
                 { id: 1, detalle: "Detalle del Elemento 1 de Producto B" },
                 { id: 2, detalle: "Detalle del Elemento 2 de Producto B" },
                 { id: 3, detalle: "Detalle del Elemento 3 de Producto B" },
                 { id: 4, detalle: "Detalle del Elemento 4 de Producto B" }
             ],
-            producto3: [
-                { id: 1, detalle: "Detalle del Elemento 1 de Producto C" },
-                { id: 2, detalle: "Detalle del Elemento 2 de Producto C" },
+            productosC: [
+                { id: 1, detalle: "PIZZA" },
+                { id: 2, detalle: "HAMBURGUESA" },
                 { id: 3, detalle: "Detalle del Elemento 3 de Producto C" },
                 { id: 4, detalle: "Detalle del Elemento 4 de Producto C" }
             ]

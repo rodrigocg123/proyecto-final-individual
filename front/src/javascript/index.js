@@ -13,12 +13,12 @@ const productos = {
         { id: 4, detalle: "Detalle del Elemento 4 de Producto B" }
     ],
     producto3: [
-        { id: 1, detalle: "Detalle del Elemento 1 de Producto C" },
-        { id: 2, detalle: "Detalle del Elemento 2 de Producto C" },
+        { id: 1, detalle: "PIZZA" },
+        { id: 2, detalle: "HAMBURGUESA" },
         { id: 3, detalle: "Detalle del Elemento 3 de Producto C" },
         { id: 4, detalle: "Detalle del Elemento 4 de Producto C" }
     ]
-};
+}
 
 // Función para actualizar la lista de detalles con el producto seleccionado
 function MostrarMensaje(producto) {
