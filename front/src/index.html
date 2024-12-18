@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercañeda</title>
+    <link rel="stylesheet" href="css/estilos.css">
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="./javascript/index.js"></script>
-    <style>
-        
-         /* Estilos y colores para los botones  */    
-
-        body{
+    <!-- <style>
+        body {
 
             margin: 0;
             padding: 0;
@@ -25,30 +24,33 @@
             display: block;
             color: black;
         }
+
         .contenedor {
             display: flex;
         }
+
         .green {
             background-color: rgb(110, 219, 110);
+            position: left;
         }
+
         .yellow {
             background-color: rgb(206, 206, 95);
+            position: left;
         }
+
         .red {
             background-color: rgb(218, 76, 76);
         }
-        /* /*
-         Estilos para las listas de maestro-detalle 
-         */
-         .maestro-detalle {
-            position:right;
+
+        .maestro-detalle {
+            position: right;
             display: center;
             justify-content: space-between;
         }
 
         .maestro {
-            position: center
-            ;
+            position: center;
             width: 200px;
         }
 
@@ -65,138 +67,232 @@
             padding: 5px;
             border: 1px solid #ddd;
             margin-bottom: 5px;
-            cursor: pointer; /* Para hacerlos parecer botones */
+            cursor: pointer;
         }
-         li:hover {
+
+        li:hover {
             background-color: rgb(136, 223, 136);
         }
-        /* para centrar el texto */
-        .centrado1{
+        .centrado1 {
             background-color: rgb(179, 189, 162);
             top: 0;
             left: 0;
-            width: 100%
-            margin 0;
+            width: 100% margin 0;
             text-align: center;
             font-size: 200;
             border-color: black;
             color: green;
         }
+
         .centrado2 {
             text-align: center;
-            font-size: 100;
+            font-size: 80;
             background-color: #ddd;
             margin-top: 30px;
 
         }
+
         .section-1 {
-        background-color: #4CAF50; /* Fondo verde */
-         color: white;  /* Texto blanco */
-         padding: 50px;
-        text-align: center;
-        } 
+            background-color: #4CAF50;
+            color: white;
+            padding: 50px;
+            text-align: center;
+        }
+
         .titulo {
             background-color: black;
             margin-top: 0px;
         }
-    </style>
-</head> 
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style> -->
+</head>
+
 <body>
-    
+    <!-- titulo y introduccion -->
     <header class="centrado1">MERCAÑEDA</header>
-   
     <h1 class="centrado2">¡¡¡La Web que revolucionara tu forma de administrar tu nutricion!!!</h1>
-    <!-- </section> -->
-   
-   
+
     <!-- Botones -->
     <div class="contenedor">
-        <button id="boton1" class="green" onclick="MostrarMensaje('producto1')">ALIMENTOS A</button>
-        <button id="boton2" class="yellow" onclick="MostrarMensaje('producto2')">ALIMENTOS B</button>
-        <button id="boton3" class="red" onclick="MostrarMensaje('producto3')">ALIMENTOS C</button>
-    </div>
 
-    <!-- Maestro-detalle con listas -->
-    <div class="maestro-detalle">
-        <!-- Lista Maestro -->
-        <div class="maestro">
-            <h2>Lista de Elementos</h2>
-            <ul id="listaElementos">
-                <li data-id="1">PIZZA</li>
-                <li data-id="2">Elemento 2</li>
-                <li data-id="3">Elemento 3</li>
-                <li data-id="4">Elemento 4</li>
-            </ul>
-        </div>
+        <button id="boton1" class="green" onclick="mostrarLista()">ALIMENTOS A</button>
 
-        <!-- Lista Detalle -->
-        <div class="detalle">
-            <h2>Detalles del Elemento</h2>
-            <ul id="detalleElemento">
-                <!-- Aquí se actualizarán los detalles dinámicamente -->
-            </ul>
+        <!-- Modal para mostrar los detalles -->
+        <div id="detalleModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModal()">&times;</span>
+                <h3>Detalles del Elemento</h3>
+                <ul id="detalleLista"></ul>
+            </div>
         </div>
+        <script>
+            // Datos de ejemplo para los elementos
+            const elementos = [
+                { id: 1, nombre: 'Elemento 1', detalles: ['Detalle 1.1', 'Detalle 1.2', 'Detalle 1.3'] },
+                { id: 2, nombre: 'Elemento 2', detalles: ['Detalle 2.1', 'Detalle 2.2', 'Detalle 2.3'] },
+                { id: 3, nombre: 'Elemento 3', detalles: ['Detalle 3.1', 'Detalle 3.2', 'Detalle 3.3'] },
+                { id: 4, nombre: 'Elemento 4', detalles: ['Detalle 4.1', 'Detalle 4.2', 'Detalle 4.3'] }
+            ];
+
+            // Función que muestra la lista de elementos
+            function mostrarLista() {
+                const listaElementos = document.getElementById('listaElementos');
+                listaElementos.innerHTML = ''; // Limpiar la lista antes de agregar nuevos elementos
+
+                elementos.forEach(elemento => {
+                    const li = document.createElement('li');
+                    li.textContent = elemento.nombre;
+                    li.setAttribute('data-id', elemento.id); // Establecer un ID único para cada elemento
+                    li.onclick = function () {
+                        mostrarDetalles(elemento.id); // Mostrar los detalles del elemento
+                    };
+                    listaElementos.appendChild(li);
+                });
+            }
+
+            // Función que muestra los detalles en el modal
+            function mostrarDetalles(id) {
+                const elemento = elementos.find(el => el.id === id); // Buscar el elemento por ID
+                const detalleLista = document.getElementById('detalleLista');
+                const detalleModal = document.getElementById('detalleModal');
+
+                // Limpiar los detalles previos
+                detalleLista.innerHTML = '';
+
+                // Crear una lista con los detalles del elemento
+                elemento.detalles.forEach(detalle => {
+                    const li = document.createElement('li');
+                    li.textContent = detalle;
+                    detalleLista.appendChild(li);
+                });
+
+                // Mostrar el modal
+                detalleModal.style.display = 'block';
+            }
+
+            // Función para cerrar el modal
+            function cerrarModal() {
+                const detalleModal = document.getElementById('detalleModal');
+                detalleModal.style.display = 'none';
+            }
+
+            // Cerrar el modal si se hace clic fuera de él
+            window.onclick = function (event) {
+                const modal = document.getElementById('detalleModal');
+                if (event.target == modal) {
+                    cerrarModal();
+                }
+            };
+        </script>
+
+        <button id="boton2" class="yellow" onclick="mostrarLista()">ALIMENTOS B</button>
+
+        <button id="boton3" class="red" onclick="mostrarLista()">ALIMENTOS C</button>
+
+
     </div>
-   
+    <!-- seccion noticias  -->
     <aside>
         <h3>NOTICIAS SEMANALES PARA MEJORAR TU NUTRICION</h3>
         <ul>
             <li><a href="https://cuidateplus.marca.com/alimentacion/nutricion.html">Noticia 1</a></li>
-            <li><a href="https://www.20minutos.es/salud/nutricion/nutricionista-habitos-alimenticios-incluir-tu-rutina-5650166/">Noticia 2</a></li>
-            <li><a href="https://www.20minutos.es/salud/nutricion/superalimento-quinoa-grano-musculo-adelgaza-rejuvenece-salud-5116402/">Noticia 3</a></li>
+            <li><a
+                    href="https://www.20minutos.es/salud/nutricion/nutricionista-habitos-alimenticios-incluir-tu-rutina-5650166/">Noticia
+                    2</a></li>
+            <li><a
+                    href="https://www.20minutos.es/salud/nutricion/superalimento-quinoa-grano-musculo-adelgaza-rejuvenece-salud-5116402/">Noticia
+                    3</a></li>
         </ul>
     </aside>
-   
-    
-    <script>
-        // Datos de ejemplo para los productos
-        const productos = {
-            productosA: [
-                { id: 1, detalle: "Detalle del Elemento 1 de Producto A" },
-                { id: 2, detalle: "Detalle del Elemento 2 de Producto A" },
-                { id: 3, detalle: "Detalle del Elemento 3 de Producto A" },
-                { id: 4, detalle: "Detalle del Elemento 4 de Producto A" }
-            ],
-            productoaB: [
-                { id: 1, detalle: "Detalle del Elemento 1 de Producto B" },
-                { id: 2, detalle: "Detalle del Elemento 2 de Producto B" },
-                { id: 3, detalle: "Detalle del Elemento 3 de Producto B" },
-                { id: 4, detalle: "Detalle del Elemento 4 de Producto B" }
-            ],
-            productosC: [
-                { id: 1, detalle: "PIZZA" },
-                { id: 2, detalle: "HAMBURGUESA" },
-                { id: 3, detalle: "Detalle del Elemento 3 de Producto C" },
-                { id: 4, detalle: "Detalle del Elemento 4 de Producto C" }
-            ]
-        };
-
-        // Función para mostrar detalles según el producto
-        function MostrarMensaje(producto) {
-            // Cambiar los detalles de la lista dependiendo del producto seleccionado
-            const listaDetalles = productos[producto];
-            const listaDetalleElemento = document.getElementById("detalleElemento");
-
-            // Limpiar los detalles anteriores
-            listaDetalleElemento.innerHTML = '';
-
-            // Mostrar los nuevos detalles
-            listaDetalles.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item.detalle;
-                listaDetalleElemento.appendChild(li);
-            });
-        }
-
-        // Función para manejar los clics en los elementos de la lista "Lista de Elementos"
-        const listaElementos = document.getElementById("listaElementos");
-        listaElementos.addEventListener("click", function(e) {
-            if (e.target.tagName === "LI") {
-                const itemId = e.target.getAttribute("data-id");
-                alert("Has seleccionado el Elemento con ID: " + itemId);
-            }
-        });
-    </script>
 
 </body>
+
+</html>
+<script>
+    // Datos de ejemplo para los productos
+    const productos = {
+        productosA: [
+            { id: 1, detalle: "Detalle del Elemento 1 de Producto A" },
+            { id: 2, detalle: "Detalle del Elemento 2 de Producto A" },
+            { id: 3, detalle: "Detalle del Elemento 3 de Producto A" },
+            { id: 4, detalle: "Detalle del Elemento 4 de Producto A" }
+        ],
+        productoaB: [
+            { id: 1, detalle: "Detalle del Elemento 1 de Producto B" },
+            { id: 2, detalle: "Detalle del Elemento 2 de Producto B" },
+            { id: 3, detalle: "Detalle del Elemento 3 de Producto B" },
+            { id: 4, detalle: "Detalle del Elemento 4 de Producto B" }
+        ],
+        productosC: [
+            { id: 1, detalle: "Detalle del Elemento 1 de Producto C" },
+            { id: 2, detalle: "Detalle del Elemento 2 de Producto C" },
+            { id: 3, detalle: "Detalle del Elemento 3 de Producto C" },
+            { id: 4, detalle: "Detalle del Elemento 4 de Producto C" }
+        ]
+    };
+
+    // Función para mostrar detalles según el producto
+    function MostrarMensaje(producto) {
+        // Cambiar los detalles de la lista dependiendo del producto seleccionado
+        const listaDetalles = productos[producto];
+        const listaDetalleElemento = document.getElementById("detalleElemento");
+
+        // Limpiar los detalles anteriores
+        listaDetalleElemento.innerHTML = '';
+
+        // Mostrar los nuevos detalles
+        listaDetalles.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item.detalle;
+            listaDetalleElemento.appendChild(li);
+        });
+    }
+
+    // Función para manejar los clics en los elementos de la lista "Lista de Elementos"
+    const listaElementos = document.getElementById("listaElementos");
+    listaElementos.addEventListener("click", function (e) {
+        if (e.target.tagName === "LI") {
+            const itemId = e.target.getAttribute("data-id");
+            alert("Has seleccionado el Elemento con ID: " + itemId);
+        }
+    });
+</script>
+</body>
+
 </html>

@@ -1,11 +1,11 @@
 /* Estilos generales */
-/* body {
+body {
     margin: 0;
     padding: 0;
-} */
+}
 
 /* Estilos para los botones */
-/* button {
+button {
     width: 70%;
     height: 300px;
     font-size: 50px;
@@ -13,28 +13,28 @@
     border-radius: 5px;
     display: block;
     color: black;
-} */
+}
 
 /* Contenedor para los botones */
-/* .contenedor {
+.contenedor {
     display: flex;
-} */
+}
 
 /* Estilos de color para los botones */
-/* .green {
+.green {
     background-color: rgb(110, 219, 110);
-} */
+}
 
-/* .yellow {
+.yellow {
     background-color: rgb(206, 206, 95);
 }
 
 .red {
     background-color: rgb(218, 76, 76);
-} */
+}
 
 /* Estilos para las listas de maestro-detalle */
-/* .maestro-detalle {
+.maestro-detalle {
     display: flex;
     justify-content: space-between;
 }
@@ -45,10 +45,10 @@
 
 .detalle {
     width: 300px;
-} */
+}
 
 /* Estilos generales para las listas */
-/* ul {
+ul {
     list-style-type: none;
     padding: 0;
 }
@@ -57,15 +57,16 @@ li {
     padding: 5px;
     border: 1px solid #ddd;
     margin-bottom: 5px;
-    cursor: pointer; /* Para hacerlos parecer botones */
-/* }
+    cursor: pointer;
+    /*Para hacerlos parecer botones */
+}
 
 li:hover {
     background-color: rgb(136, 223, 136);
-} */ 
+}
 
 /* Estilos para centrar el texto */
-/* .centrado1 {
+.centrado1 {
     background-color: rgb(179, 189, 162);
     top: 0;
     left: 0;
@@ -83,15 +84,16 @@ li:hover {
 }
 
 /* Sección 1 con fondo verde */
-/* .section-1 {
-    background-color: #4CAF50; /* Fondo verde */
-    /* color: white;  Texto blanco */
-    /* padding: 50px;
+.section-1 {
+    background-color: #4CAF50;
+    /* Fondo verde */
+    color: white;
+    padding: 50px;
     text-align: center;
-} */
+}
 
 /* Estilo del título */
-/* .titulo {
+.titulo {
     background-color: black;
     margin-top: 0px;
-}   */
+}
