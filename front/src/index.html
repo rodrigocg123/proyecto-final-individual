@@ -8,141 +8,7 @@
     <link rel="stylesheet" href="css/estilos.css">
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="./javascript/index.js"></script>
-    <!-- <style>
-        body {
-
-            margin: 0;
-            padding: 0;
-        }
-
-        button {
-            width: 70%;
-            height: 300px;
-            font-size: 50px;
-            margin: 0px;
-            border-radius: 5px;
-            display: block;
-            color: black;
-        }
-
-        .contenedor {
-            display: flex;
-        }
-
-        .green {
-            background-color: rgb(110, 219, 110);
-            position: left;
-        }
-
-        .yellow {
-            background-color: rgb(206, 206, 95);
-            position: left;
-        }
-
-        .red {
-            background-color: rgb(218, 76, 76);
-        }
-
-        .maestro-detalle {
-            position: right;
-            display: center;
-            justify-content: space-between;
-        }
-
-        .maestro {
-            position: center;
-            width: 200px;
-        }
-
-        .detalle {
-            width: 300px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            padding: 5px;
-            border: 1px solid #ddd;
-            margin-bottom: 5px;
-            cursor: pointer;
-        }
-
-        li:hover {
-            background-color: rgb(136, 223, 136);
-        }
-        .centrado1 {
-            background-color: rgb(179, 189, 162);
-            top: 0;
-            left: 0;
-            width: 100% margin 0;
-            text-align: center;
-            font-size: 200;
-            border-color: black;
-            color: green;
-        }
-
-        .centrado2 {
-            text-align: center;
-            font-size: 80;
-            background-color: #ddd;
-            margin-top: 30px;
-
-        }
-
-        .section-1 {
-            background-color: #4CAF50;
-            color: white;
-            padding: 50px;
-            text-align: center;
-        }
-
-        .titulo {
-            background-color: black;
-            margin-top: 0px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
-            padding: 20px;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 10px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style> -->
 </head>
-
 <body>
     <!-- titulo y introduccion -->
     <header class="centrado1">MERCAÑEDA</header>
@@ -222,8 +88,139 @@
         </script>
 
         <button id="boton2" class="yellow" onclick="mostrarLista()">ALIMENTOS B</button>
+        <div id="detalleModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModal()">&times;</span>
+                <ul id="detalleLista"></ul>
+            </div>
+        </div>
+        <script>
+            // Datos de ejemplo para los elementos
+            const elementos2 = [
+                { id: 1, nombre: 'Elemento 1', detalles: ['Detalle 1.1', 'Detalle 1.2', 'Detalle 1.3'] },
+                { id: 2, nombre: 'Elemento 2', detalles: ['Detalle 2.1', 'Detalle 2.2', 'Detalle 2.3'] },
+                { id: 3, nombre: 'Elemento 3', detalles: ['Detalle 3.1', 'Detalle 3.2', 'Detalle 3.3'] },
+                { id: 4, nombre: 'Elemento 4', detalles: ['Detalle 4.1', 'Detalle 4.2', 'Detalle 4.3'] }
+            ];
+
+            // Función que muestra la lista de elementos
+            function mostrarLista() {
+                const listaElementos = document.getElementById('listaElementos');
+                listaElementos.innerHTML = ''; // Limpiar la lista antes de agregar nuevos elementos
+
+                elementos.forEach(elemento => {
+                    const li = document.createElement('li');
+                    li.textContent = elemento.nombre;
+                    li.setAttribute('data-id', elemento.id); // Establecer un ID único para cada elemento
+                    li.onclick = function () {
+                        mostrarDetalles(elemento.id); // Mostrar los detalles del elemento
+                    };
+                    listaElementos.appendChild(li);
+                });
+            }
+
+            // Función que muestra los detalles en el modal
+            function mostrarDetalles(id) {
+                const elemento = elementos.find(el => el.id === id); // Buscar el elemento por ID
+                const detalleLista = document.getElementById('detalleLista');
+                const detalleModal = document.getElementById('detalleModal');
+
+                // Limpiar los detalles previos
+                detalleLista.innerHTML = '';
+
+                // Crear una lista con los detalles del elemento
+                elemento.detalles.forEach(detalle => {
+                    const li = document.createElement('li');
+                    li.textContent = detalle;
+                    detalleLista.appendChild(li);
+                });
+
+                // Mostrar el modal
+                detalleModal.style.display = 'block';
+            }
+
+            // Función para cerrar el modal
+            function cerrarModal() {
+                const detalleModal = document.getElementById('detalleModal');
+                detalleModal.style.display = 'none';
+            }
+
+            // Cerrar el modal si se hace clic fuera de él
+            window.onclick = function (event) {
+                const modal = document.getElementById('detalleModal');
+                if (event.target == modal) {
+                    cerrarModal();
+                }
+            };
+        </script>
 
         <button id="boton3" class="red" onclick="mostrarLista()">ALIMENTOS C</button>
+        <div id="detalleModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModal()">&times;</span>
+                <ul id="detalleLista"></ul>
+            </div>
+        </div>
+        <script>
+            // Datos de ejemplo para los elementos
+            const elementos3 = [
+                { id: 1, nombre: 'Elemento 1', detalles: ['Detalle 1.1', 'Detalle 1.2', 'Detalle 1.3'] },
+                { id: 2, nombre: 'Elemento 2', detalles: ['Detalle 2.1', 'Detalle 2.2', 'Detalle 2.3'] },
+                { id: 3, nombre: 'Elemento 3', detalles: ['Detalle 3.1', 'Detalle 3.2', 'Detalle 3.3'] },
+                { id: 4, nombre: 'Elemento 4', detalles: ['Detalle 4.1', 'Detalle 4.2', 'Detalle 4.3'] }
+            ];
+
+            // Función que muestra la lista de elementos
+            function mostrarLista() {
+                const listaElementos = document.getElementById('listaElementos');
+                listaElementos.innerHTML = ''; // Limpiar la lista antes de agregar nuevos elementos
+
+                elementos.forEach(elemento => {
+                    const li = document.createElement('li');
+                    li.textContent = elemento.nombre;
+                    li.setAttribute('data-id', elemento.id); // Establecer un ID único para cada elemento
+                    li.onclick = function () {
+                        mostrarDetalles(elemento.id); // Mostrar los detalles del elemento
+                    };
+                    listaElementos.appendChild(li);
+                });
+            }
+
+            // Función que muestra los detalles en el modal
+            function mostrarDetalles(id) {
+                const elemento = elementos.find(el => el.id === id); // Buscar el elemento por ID
+                const detalleLista = document.getElementById('detalleLista');
+                const detalleModal = document.getElementById('detalleModal');
+
+                // Limpiar los detalles previos
+                detalleLista.innerHTML = '';
+
+                // Crear una lista con los detalles del elemento
+                elemento.detalles.forEach(detalle => {
+                    const li = document.createElement('li');
+                    li.textContent = detalle;
+                    detalleLista.appendChild(li);
+                });
+
+                // Mostrar el modal
+                detalleModal.style.display = 'block';
+            }
+
+            // Función para cerrar el modal
+            function cerrarModal() {
+                const detalleModal = document.getElementById('detalleModal');
+                detalleModal.style.display = 'none';
+            }
+
+            // Cerrar el modal si se hace clic fuera de él
+            window.onclick = function (event) {
+                const modal = document.getElementById('detalleModal');
+                if (event.target == modal) {
+                    cerrarModal();
+                }
+            };
+        </script>
+
 
 
     </div>
@@ -253,7 +250,7 @@
             { id: 3, detalle: "Detalle del Elemento 3 de Producto A" },
             { id: 4, detalle: "Detalle del Elemento 4 de Producto A" }
         ],
-        productoaB: [
+        productosB: [
             { id: 1, detalle: "Detalle del Elemento 1 de Producto B" },
             { id: 2, detalle: "Detalle del Elemento 2 de Producto B" },
             { id: 3, detalle: "Detalle del Elemento 3 de Producto B" },
