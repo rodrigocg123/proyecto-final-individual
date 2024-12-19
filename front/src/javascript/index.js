@@ -1,149 +1,104 @@
+async function cargarProductos() {
+    const response = await fetch('http://localhost:8080/productos');
+    const productos = await response.json();
+    mostrarProductos(productos);
+}
 
-// Datos de los productos
-const productos = {
-    productosA: [
-        { id: 1, nombre: 'Pollo', detalles: ['Detalle 1.1', 'Detalle 1.2'], cantidad: 0},
-        { id: 2, nombre: 'Queso fresco', detalles: ['Detalle 2.1', 'Detalle 2.2'], cantidad: 0 },
-        { id: 3, nombre: 'Docena de Huevos', detalles: ['Detalle 3.1', 'Detalle 3.2'], cantidad: 0 },
-        { id: 4, nombre: 'Salmon', detalles: ['Detalle 4.1', 'Detalle 4.2'], cantidad: 0 }
-    ],
-    productosB: [
-        { id: 1, nombre: 'Elemento 1', detalles: ['Cantidad', 'Detalle 1.2'] },
-        { id: 2, nombre: 'Elemento 2', detalles: ['Cantidad', 'Detalle 2.2'] },
-        { id: 3, nombre: 'Elemento 3', detalles: ['Cantidad', 'Detalle 3.2'] },
-        { id: 4, nombre: 'Elemento 4', detalles: ['Cantidad', 'Detalle 4.2'] }
-    ],
-    productosC: [
-        { id: 1, nombre: 'Elemento 1', detalles: ['Cantidad', 'Detalle 1.2 '] },
-        { id: 2, nombre: 'Elemento 2', detalles: ['Cantidad', 'Detalle 2.2'] },
-        { id: 3, nombre: 'Elemento 3', detalles: ['Cantidad', 'Detalle 3.2'] },
-        { id: 4, nombre: 'Elemento 4', detalles: ['Cantidad', 'Detalle 4.2'] }
-    ]
-};
+// Mostrar los productos en la página
+function mostrarProductos(productos) {
+    const listaContenedor = document.getElementById('productos-lista');
+    listaContenedor.innerHTML = ''; // Limpiar la lista actual
 
-// Mostrar lista de productos
-function mostrarLista(tipoProducto) {
-    const listaContenedor = document.getElementById(tipoProducto);
-    listaContenedor.innerHTML = ''; // Limpiar contenido anterior
-
-    productos[tipoProducto].forEach(producto => {
-        // Crear elementos HTML para mostrar cada producto
+    productos.forEach(producto => {
+        // Crear un contenedor para cada producto
         const productoItem = document.createElement('div');
         productoItem.classList.add('producto-item');
 
+        // Nombre del producto
         const nombre = document.createElement('h4');
         nombre.textContent = producto.nombre;
 
-        // Crear el contador
-        const contador = document.createElement('div');
-        contador.classList.add('contador');
-        const decrementar = document.createElement('button');
-        decrementar.textContent = '-';
-        decrementar.onclick = () => actualizarCantidad(producto.id, tipoProducto, -1);
+        // Precio del producto
+        const precio = document.createElement('p');
+        precio.textContent = `Precio: ${producto.precio} €`;
 
-        const cantidad = document.createElement('span');
-        cantidad.id = `cantidad-${producto.id}`;
-        cantidad.textContent = producto.cantidad;
+        // Cantidad disponible
+        const cantidad = document.createElement('p');
+        cantidad.textContent = `Cantidad disponible: ${producto.cantidad}`;
 
-        const incrementar = document.createElement('button');
-        incrementar.textContent = '+';
-        incrementar.onclick = () => actualizarCantidad(producto.id, tipoProducto, 1);
+        // Contenedor para el contador
+        const cantidadContenedor = document.createElement('div');
+        cantidadContenedor.classList.add('cantidad-container');
+
+        const botonRestar = document.createElement('button');
+        botonRestar.textContent = '-';
+        botonRestar.onclick = () => actualizarCantidad(producto.id, 'restar');
+
+        const inputCantidad = document.createElement('input');
+        inputCantidad.type = 'number';
+        inputCantidad.value = 1;
+        inputCantidad.min = 1;
+        inputCantidad.max = producto.cantidad;
+
+        const botonSumar = document.createElement('button');
+        botonSumar.textContent = '+';
+        botonSumar.onclick = () => actualizarCantidad(producto.id, 'sumar');
+
+        cantidadContenedor.appendChild(botonRestar);
+        cantidadContenedor.appendChild(inputCantidad);
+        cantidadContenedor.appendChild(botonSumar);
 
         // Crear el botón de compra
         const botonCompra = document.createElement('button');
         botonCompra.textContent = 'Comprar';
-        botonCompra.disabled = producto.cantidad < 1;
-        botonCompra.onclick = () => comprarProducto(producto.id, tipoProducto);
+        botonCompra.disabled = producto.cantidad <= 0;  // Deshabilitar si no hay stock
+        botonCompra.onclick = () => comprarProducto(producto.id, inputCantidad);
 
-        // Añadir los elementos al contenedor del producto
-        contador.appendChild(decrementar);
-        contador.appendChild(cantidad);
-        contador.appendChild(incrementar);
+        // Añadir todos los elementos al contenedor del producto
         productoItem.appendChild(nombre);
-        productoItem.appendChild(contador);
+        productoItem.appendChild(precio);
+        productoItem.appendChild(cantidad);
+        productoItem.appendChild(cantidadContenedor);
         productoItem.appendChild(botonCompra);
 
+        // Añadir el producto al contenedor de la lista
         listaContenedor.appendChild(productoItem);
     });
 }
 
+// Actualizar la cantidad seleccionada por el usuario
+function actualizarCantidad(productoId, accion) {
+    const productoItem = document.getElementById(`producto-${productoId}`);
+    const inputCantidad = productoItem.querySelector('input');
 
-
-// Actualizar la cantidad de un producto
-function actualizarCantidad(id, tipoProducto, cambio) {
-    const producto = productos[tipoProducto].find(p => p.id === id);
-    producto.cantidad += cambio;
-    if (producto.cantidad < 0) producto.cantidad = 0; // No permitir cantidad negativa
-    document.getElementById(`cantidad-${id}`).textContent = producto.cantidad;
-    actualizarBotonCompra(id, tipoProducto);
+    let cantidadActual = parseInt(inputCantidad.value);
+    if (accion === 'restar' && cantidadActual > 1) {
+        inputCantidad.value = cantidadActual - 1;
+    } else if (accion === 'sumar' && cantidadActual < inputCantidad.max) {
+        inputCantidad.value = cantidadActual + 1;
+    }
 }
 
-// Activar o desactivar el botón de compra
-function actualizarBotonCompra(id, tipoProducto) {
-    const producto = productos[tipoProducto].find(p => p.id === id);
-    const botonCompra = document.querySelector(`#productos${tipoProducto} button[onclick*='comprarProducto'][data-id='${id}']`);
-    if (producto.cantidad < 1) {
-        botonCompra.disabled = true;
+// Función para comprar un producto
+async function comprarProducto(id, inputCantidad) {
+    const cantidadSeleccionada = parseInt(inputCantidad.value);
+    const response = await fetch(`http://localhost:8080/productos/${id}/compra`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ cantidad: cantidadSeleccionada }) // Enviar la cantidad seleccionada
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+        alert(data); // Mensaje de compra exitosa
+        cargarProductos(); // Actualizar la lista de productos
     } else {
-        botonCompra.disabled = false;
+        alert(data); // Mensaje de error (por ejemplo, sin stock)
     }
 }
 
-// Función de compra (puedes modificarla según lo que necesites hacer)
-function comprarProducto(id, tipoProducto) {
-    const producto = productos[tipoProducto].find(p => p.id === id);
-    alert(`Compraste ${producto.nombre} con ${producto.cantidad} unidades.`);
-    producto.cantidad = 0; // Restablecer la cantidad a 0 después de comprar
-    document.getElementById(`cantidad-${id}`).textContent = producto.cantidad;
-    actualizarBotonCompra(id, tipoProducto);
-}
-
-// Mostrar lista de elementos en el modal
-function mostrarLista(tipoProducto) {
-    const listaElementos = productos[tipoProducto];
-    const modal = document.getElementById('detalleModal');
-    const detalleLista = document.getElementById('detalleLista');
-    
-    // Limpiar la lista y los detalles
-    detalleLista.innerHTML = '';
-
-    // Crear la lista de elementos
-    listaElementos.forEach(elemento => {
-        const li = document.createElement('li');
-        li.textContent = elemento.nombre;
-        li.onclick = function () {
-            mostrarDetalles(elemento.detalles); // Mostrar los detalles del elemento
-        };
-        detalleLista.appendChild(li);
-    });
-
-    // Mostrar el modal
-    modal.style.display = 'block';
-}
-
-// Mostrar detalles en el modal
-function mostrarDetalles(detalles) {
-    const detalleLista = document.getElementById('detalleLista');
-    detalleLista.innerHTML = ''; // Limpiar detalles previos
-
-    // Crear la lista de detalles
-    detalles.forEach(detalle => {
-        const li = document.createElement('li');
-        li.textContent = detalle;
-        detalleLista.appendChild(li);
-    });
-}
-
-// Cerrar el modal
-function cerrarModal() {
-    const modal = document.getElementById('detalleModal');
-    modal.style.display = 'none';
-}
-
-// Cerrar el modal si se hace clic fuera de él
-window.onclick = function (event) {
-    const modal = document.getElementById('detalleModal');
-    if (event.target === modal) {
-        cerrarModal();
-    }
-};
+// Cargar productos cuando la página se carga
+cargarProductos();
+</script>

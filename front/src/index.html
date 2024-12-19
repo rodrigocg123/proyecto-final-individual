@@ -1,57 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercañeda</title>
     <link rel="stylesheet" href="css/estilos.css">
     <script src="../node_modules/jquery/dist/jquery.js"></script>
-    <script src="./javascript/index.js"></script> <!-- Archivo de JavaScript -->
+    <script src="./javascript/index.js"></script>
+    <title>Lista de Productos</title>
+    
 </head>
-
-
 <body>
-    <!-- Título y introducción -->
-    <header class="top-header">
-        <div class="logo-top-header">
-            <a>MERCAÑEDA</a>
-        </div>
-        <nav class="funcionalidades-top-header">
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">noticias</a></li>
+
+    <h1>Lista de Productos</h1>
+    <div class="container">
+        <div id="productos-lista">
+            <ul class="productosA">
+                <li class="pollo">Pollo</li>
+                <li class="huevos">Huevos(docenas)</li>
             </ul>
-        </nav>
-    </header>
-    <h1 class="centrado2">¡¡¡La Web que revolucionará tu forma de administrar tu nutrición!!!</h1>
-
-    <!-- Botones -->
-    <div class="contenedor">
-        <!-- Botones de productos A, B, C -->
-        <button class="green" onclick="mostrarLista('productosA')">ALIMENTOS A</button>
-        <button class="yellow" onclick="mostrarLista('productosB')">ALIMENTOS B</button>
-        <button class="red" onclick="mostrarLista('productosC')">ALIMENTOS C</button>
-
-        <!-- Modal para mostrar los detalles -->
-        <div id="detalleModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="cerrarModal()">&times;</span>
-                <h3>Opciones de compra</h3>
-                <ul id="detalleLista"></ul>
-            </div>
+            <ul class="productosB">
+                <li>producto</li>
+                <li>producto</li>
+            </ul>
+            <ul class="productosC">
+                <li>producto</li>
+                <li>producto</li>
+            </ul>
         </div>
     </div>
-
-    <!-- Sección de noticias -->
-    <aside>
-        <h3>NOTICIAS SEMANALES PARA MEJORAR TU NUTRICIÓN</h3>
-        <ul>
-            <li><a href="https://cuidateplus.marca.com/alimentacion/nutricion.html">Noticia 1</a></li>
-            <li><a href="https://www.20minutos.es/salud/nutricion/nutricionista-habitos-alimenticios-incluir-tu-rutina-5650166/">Noticia 2</a></li>
-            <li><a href="https://www.20minutos.es/salud/nutricion/superalimento-quinoa-grano-musculo-adelgaza-rejuvenece-salud-5116402/">Noticia 3</a></li>
-        </ul>
-    </aside>
+    
 </body>
-
 </html>

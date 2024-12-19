@@ -1,148 +1,43 @@
-/* Resetting margins and padding */
+.productosA{
+    list-style: style none;
+
+}
+.huevos{
+    list-style-image: 🥚;
+}
+.pollo{
+    list-style-image: 🐤;
+
+}
+.productosC{
+
+}
 body {
-    margin: 0;
-    padding: 0;
-    background-color:rgb(110, 219, 110);
+    font-family: Arial, sans-serif;
+}
+
+#productos-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.producto-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
 }
 
 button {
-    width: 70%;
-    height: 300px;
-    font-size: 50px;
-    margin: 0px;
-    border-radius: 5px;
-    display: block;
-    color: black;
-    margin-top: 0%;
-}
-
-.contenedor {
-    display: flex;
-}
-
-.green {
-    background-color: rgb(110, 219, 110);
-    position: left;
-}
-
-.yellow {
-    background-color: rgb(206, 206, 95);
-    position: left;
-}
-
-.red {
-    background-color: rgb(218, 76, 76);
-}
-
-.maestro-detalle {
-    position: right;
-    display: center;
-    justify-content: space-between;
-}
-
-.maestro {
-    position: center;
-    width: 200px;
-}
-
-.detalle {
-    width: 300px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    padding: 5px;
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
-    cursor: pointer;
-}
-
-li:hover {
-    background-color: rgb(136, 223, 136);
-}
-.centrado2 {
-    text-align: center;
-    font-size: 80;
-    background-color: #ddd;
-    margin-top: 0;
-}
-
-.section-1 {
+    padding: 10px;
     background-color: #4CAF50;
     color: white;
-    padding: 50px;
-    text-align: center;
-}
-
-.titulo {
-    background-color: black;
-    margin-top: 0px;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 10px;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+    border: none;
     cursor: pointer;
 }
-.noticias{
-    background-color:#ddd;
-    margin-top: auto;
-}
-.top-header {
-    color: black; 
-    display: flex;
-    position: static;
-    justify-content: space-between; /* Espaciado entre el logo y los enlaces */
-    align-items: center; /* Alineación vertical de los elementos */
-    padding: 10px 20px; /* Espaciado interno */
-}
-/* Estilo de la barra de navegación  */
-.nav-links ul {
-    list-style: none; /* Eliminar los puntos de la lista */
-    display: flex; /* Disposición en fila */
-}
-.logo-top-header{
-    background-color:#ddd;
-    color: #4CAF50;
-    font-size: xx-large;
-    font-style: oblique;
-}
-.funcionalidades-top-header{
-    border-style: none; 
-    color: #4CAF50;
-    display:inline;
-    font-size: larger;
-    background-color:#ddd;
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
