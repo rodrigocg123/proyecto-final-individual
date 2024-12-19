@@ -121,9 +121,9 @@ li:hover {
     margin-top: auto;
 }
 .top-header {
-    background-color: ; 
     color: black; 
     display: flex;
+    position: static;
     justify-content: space-between; /* Espaciado entre el logo y los enlaces */
     align-items: center; /* Alineación vertical de los elementos */
     padding: 10px 20px; /* Espaciado interno */
