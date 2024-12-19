@@ -7,289 +7,40 @@
     <title>Mercañeda</title>
     <link rel="stylesheet" href="css/estilos.css">
     <script src="../node_modules/jquery/dist/jquery.js"></script>
-    <script src="./javascript/index.js"></script>
+    <script src="./javascript/index.js"></script> <!-- Archivo de JavaScript -->
 </head>
+
 <body>
-    <!-- titulo y introduccion -->
+    <!-- Título y introducción -->
     <header class="centrado1">MERCAÑEDA</header>
-    <h1 class="centrado2">¡¡¡La Web que revolucionara tu forma de administrar tu nutricion!!!</h1>
+    <h1 class="centrado2">¡¡¡La Web que revolucionará tu forma de administrar tu nutrición!!!</h1>
 
     <!-- Botones -->
     <div class="contenedor">
-
-        <button id="boton1" class="green" onclick="mostrarLista()">ALIMENTOS A</button>
+        <!-- Botones de productos A, B, C -->
+        <button class="green" onclick="mostrarLista('productosA')">ALIMENTOS A</button>
+        <button class="yellow" onclick="mostrarLista('productosB')">ALIMENTOS B</button>
+        <button class="red" onclick="mostrarLista('productosC')">ALIMENTOS C</button>
 
         <!-- Modal para mostrar los detalles -->
         <div id="detalleModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="cerrarModal()">&times;</span>
-                <h3>Detalles del Elemento</h3>
+                <h3>Opciones de compra</h3>
                 <ul id="detalleLista"></ul>
             </div>
         </div>
-        <script>
-            // Datos de ejemplo para los elementos
-            const elementos = [
-                { id: 1, nombre: 'Elemento 1', detalles: ['Detalle 1.1', 'Detalle 1.2', 'Detalle 1.3'] },
-                { id: 2, nombre: 'Elemento 2', detalles: ['Detalle 2.1', 'Detalle 2.2', 'Detalle 2.3'] },
-                { id: 3, nombre: 'Elemento 3', detalles: ['Detalle 3.1', 'Detalle 3.2', 'Detalle 3.3'] },
-                { id: 4, nombre: 'Elemento 4', detalles: ['Detalle 4.1', 'Detalle 4.2', 'Detalle 4.3'] }
-            ];
-
-            // Función que muestra la lista de elementos
-            function mostrarLista() {
-                const listaElementos = document.getElementById('listaElementos');
-                listaElementos.innerHTML = ''; // Limpiar la lista antes de agregar nuevos elementos
-
-                elementos.forEach(elemento => {
-                    const li = document.createElement('li');
-                    li.textContent = elemento.nombre;
-                    li.setAttribute('data-id', elemento.id); // Establecer un ID único para cada elemento
-                    li.onclick = function () {
-                        mostrarDetalles(elemento.id); // Mostrar los detalles del elemento
-                    };
-                    listaElementos.appendChild(li);
-                });
-            }
-
-            // Función que muestra los detalles en el modal
-            function mostrarDetalles(id) {
-                const elemento = elementos.find(el => el.id === id); // Buscar el elemento por ID
-                const detalleLista = document.getElementById('detalleLista');
-                const detalleModal = document.getElementById('detalleModal');
-
-                // Limpiar los detalles previos
-                detalleLista.innerHTML = '';
-
-                // Crear una lista con los detalles del elemento
-                elemento.detalles.forEach(detalle => {
-                    const li = document.createElement('li');
-                    li.textContent = detalle;
-                    detalleLista.appendChild(li);
-                });
-
-                // Mostrar el modal
-                detalleModal.style.display = 'block';
-            }
-
-            // Función para cerrar el modal
-            function cerrarModal() {
-                const detalleModal = document.getElementById('detalleModal');
-                detalleModal.style.display = 'none';
-            }
-
-            // Cerrar el modal si se hace clic fuera de él
-            window.onclick = function (event) {
-                const modal = document.getElementById('detalleModal');
-                if (event.target == modal) {
-                    cerrarModal();
-                }
-            };
-        </script>
-
-        <button id="boton2" class="yellow" onclick="mostrarLista()">ALIMENTOS B</button>
-        <div id="detalleModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="cerrarModal()">&times;</span>
-                <ul id="detalleLista"></ul>
-            </div>
-        </div>
-        <script>
-            // Datos de ejemplo para los elementos
-            const elementos2 = [
-                { id: 1, nombre: 'Elemento 1', detalles: ['Detalle 1.1', 'Detalle 1.2', 'Detalle 1.3'] },
-                { id: 2, nombre: 'Elemento 2', detalles: ['Detalle 2.1', 'Detalle 2.2', 'Detalle 2.3'] },
-                { id: 3, nombre: 'Elemento 3', detalles: ['Detalle 3.1', 'Detalle 3.2', 'Detalle 3.3'] },
-                { id: 4, nombre: 'Elemento 4', detalles: ['Detalle 4.1', 'Detalle 4.2', 'Detalle 4.3'] }
-            ];
-
-            // Función que muestra la lista de elementos
-            function mostrarLista() {
-                const listaElementos = document.getElementById('listaElementos');
-                listaElementos.innerHTML = ''; // Limpiar la lista antes de agregar nuevos elementos
-
-                elementos.forEach(elemento => {
-                    const li = document.createElement('li');
-                    li.textContent = elemento.nombre;
-                    li.setAttribute('data-id', elemento.id); // Establecer un ID único para cada elemento
-                    li.onclick = function () {
-                        mostrarDetalles(elemento.id); // Mostrar los detalles del elemento
-                    };
-                    listaElementos.appendChild(li);
-                });
-            }
-
-            // Función que muestra los detalles en el modal
-            function mostrarDetalles(id) {
-                const elemento = elementos.find(el => el.id === id); // Buscar el elemento por ID
-                const detalleLista = document.getElementById('detalleLista');
-                const detalleModal = document.getElementById('detalleModal');
-
-                // Limpiar los detalles previos
-                detalleLista.innerHTML = '';
-
-                // Crear una lista con los detalles del elemento
-                elemento.detalles.forEach(detalle => {
-                    const li = document.createElement('li');
-                    li.textContent = detalle;
-                    detalleLista.appendChild(li);
-                });
-
-                // Mostrar el modal
-                detalleModal.style.display = 'block';
-            }
-
-            // Función para cerrar el modal
-            function cerrarModal() {
-                const detalleModal = document.getElementById('detalleModal');
-                detalleModal.style.display = 'none';
-            }
-
-            // Cerrar el modal si se hace clic fuera de él
-            window.onclick = function (event) {
-                const modal = document.getElementById('detalleModal');
-                if (event.target == modal) {
-                    cerrarModal();
-                }
-            };
-        </script>
-
-        <button id="boton3" class="red" onclick="mostrarLista()">ALIMENTOS C</button>
-        <div id="detalleModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="cerrarModal()">&times;</span>
-                <ul id="detalleLista"></ul>
-            </div>
-        </div>
-        <script>
-            // Datos de ejemplo para los elementos
-            const elementos3 = [
-                { id: 1, nombre: 'Elemento 1', detalles: ['Detalle 1.1', 'Detalle 1.2', 'Detalle 1.3'] },
-                { id: 2, nombre: 'Elemento 2', detalles: ['Detalle 2.1', 'Detalle 2.2', 'Detalle 2.3'] },
-                { id: 3, nombre: 'Elemento 3', detalles: ['Detalle 3.1', 'Detalle 3.2', 'Detalle 3.3'] },
-                { id: 4, nombre: 'Elemento 4', detalles: ['Detalle 4.1', 'Detalle 4.2', 'Detalle 4.3'] }
-            ];
-
-            // Función que muestra la lista de elementos
-            function mostrarLista() {
-                const listaElementos = document.getElementById('listaElementos');
-                listaElementos.innerHTML = ''; // Limpiar la lista antes de agregar nuevos elementos
-
-                elementos.forEach(elemento => {
-                    const li = document.createElement('li');
-                    li.textContent = elemento.nombre;
-                    li.setAttribute('data-id', elemento.id); // Establecer un ID único para cada elemento
-                    li.onclick = function () {
-                        mostrarDetalles(elemento.id); // Mostrar los detalles del elemento
-                    };
-                    listaElementos.appendChild(li);
-                });
-            }
-
-            // Función que muestra los detalles en el modal
-            function mostrarDetalles(id) {
-                const elemento = elementos.find(el => el.id === id); // Buscar el elemento por ID
-                const detalleLista = document.getElementById('detalleLista');
-                const detalleModal = document.getElementById('detalleModal');
-
-                // Limpiar los detalles previos
-                detalleLista.innerHTML = '';
-
-                // Crear una lista con los detalles del elemento
-                elemento.detalles.forEach(detalle => {
-                    const li = document.createElement('li');
-                    li.textContent = detalle;
-                    detalleLista.appendChild(li);
-                });
-
-                // Mostrar el modal
-                detalleModal.style.display = 'block';
-            }
-
-            // Función para cerrar el modal
-            function cerrarModal() {
-                const detalleModal = document.getElementById('detalleModal');
-                detalleModal.style.display = 'none';
-            }
-
-            // Cerrar el modal si se hace clic fuera de él
-            window.onclick = function (event) {
-                const modal = document.getElementById('detalleModal');
-                if (event.target == modal) {
-                    cerrarModal();
-                }
-            };
-        </script>
-
-
-
     </div>
-    <!-- seccion noticias  -->
+
+    <!-- Sección de noticias -->
     <aside>
-        <h3>NOTICIAS SEMANALES PARA MEJORAR TU NUTRICION</h3>
+        <h3>NOTICIAS SEMANALES PARA MEJORAR TU NUTRICIÓN</h3>
         <ul>
             <li><a href="https://cuidateplus.marca.com/alimentacion/nutricion.html">Noticia 1</a></li>
-            <li><a
-                    href="https://www.20minutos.es/salud/nutricion/nutricionista-habitos-alimenticios-incluir-tu-rutina-5650166/">Noticia
-                    2</a></li>
-            <li><a
-                    href="https://www.20minutos.es/salud/nutricion/superalimento-quinoa-grano-musculo-adelgaza-rejuvenece-salud-5116402/">Noticia
-                    3</a></li>
+            <li><a href="https://www.20minutos.es/salud/nutricion/nutricionista-habitos-alimenticios-incluir-tu-rutina-5650166/">Noticia 2</a></li>
+            <li><a href="https://www.20minutos.es/salud/nutricion/superalimento-quinoa-grano-musculo-adelgaza-rejuvenece-salud-5116402/">Noticia 3</a></li>
         </ul>
     </aside>
-
-</body>
-
-</html>
-<script>
-    // Datos de ejemplo para los productos
-    const productos = {
-        productosA: [
-            { id: 1, detalle: "Detalle del Elemento 1 de Producto A" },
-            { id: 2, detalle: "Detalle del Elemento 2 de Producto A" },
-            { id: 3, detalle: "Detalle del Elemento 3 de Producto A" },
-            { id: 4, detalle: "Detalle del Elemento 4 de Producto A" }
-        ],
-        productosB: [
-            { id: 1, detalle: "Detalle del Elemento 1 de Producto B" },
-            { id: 2, detalle: "Detalle del Elemento 2 de Producto B" },
-            { id: 3, detalle: "Detalle del Elemento 3 de Producto B" },
-            { id: 4, detalle: "Detalle del Elemento 4 de Producto B" }
-        ],
-        productosC: [
-            { id: 1, detalle: "Detalle del Elemento 1 de Producto C" },
-            { id: 2, detalle: "Detalle del Elemento 2 de Producto C" },
-            { id: 3, detalle: "Detalle del Elemento 3 de Producto C" },
-            { id: 4, detalle: "Detalle del Elemento 4 de Producto C" }
-        ]
-    };
-
-    // Función para mostrar detalles según el producto
-    function MostrarMensaje(producto) {
-        // Cambiar los detalles de la lista dependiendo del producto seleccionado
-        const listaDetalles = productos[producto];
-        const listaDetalleElemento = document.getElementById("detalleElemento");
-
-        // Limpiar los detalles anteriores
-        listaDetalleElemento.innerHTML = '';
-
-        // Mostrar los nuevos detalles
-        listaDetalles.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = item.detalle;
-            listaDetalleElemento.appendChild(li);
-        });
-    }
-
-    // Función para manejar los clics en los elementos de la lista "Lista de Elementos"
-    const listaElementos = document.getElementById("listaElementos");
-    listaElementos.addEventListener("click", function (e) {
-        if (e.target.tagName === "LI") {
-            const itemId = e.target.getAttribute("data-id");
-            alert("Has seleccionado el Elemento con ID: " + itemId);
-        }
-    });
-</script>
 </body>
 
 </html>
