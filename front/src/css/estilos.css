@@ -64,19 +64,6 @@ li {
 li:hover {
     background-color: rgb(136, 223, 136);
 }
-
-.centrado1 {
-    background-color: rgb(179, 189, 162);
-    top: 0;
-    left: 0;
-    width: 100%;
-    margin: 0;
-    text-align: center;
-    font-size: 200;
-    border-color: black;
-    color: green;
-}
-
 .centrado2 {
     text-align: center;
     font-size: 80;
@@ -130,6 +117,30 @@ li:hover {
     cursor: pointer;
 }
 .noticias{
-    background-color:rgb(129, 129, 223);
+    background-color:#ddd;
     margin-top: auto;
+}
+.top-header {
+    background-color: ; 
+    color: black; 
+    display: flex;
+    justify-content: space-between; /* Espaciado entre el logo y los enlaces */
+    align-items: center; /* Alineación vertical de los elementos */
+    padding: 10px 20px; /* Espaciado interno */
+}
+/* Estilo de la barra de navegación  */
+.nav-links ul {
+    list-style: none; /* Eliminar los puntos de la lista */
+    display: flex; /* Disposición en fila */
+}
+.logo-top-header{
+    background-color:#ddd;
+    color: #4CAF50;
+    font-size: xx-large;
+    font-style: oblique;
+}
+.funcionalidades-top-header{
+    color: #4CAF50;
+    font-size: larger;
+    background-color:#ddd;
 }
