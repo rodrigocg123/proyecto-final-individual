@@ -1,33 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css">
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="./javascript/index.js"></script>
-    <title>Lista de Productos</title>
-    
-</head>
-<body>
+    <title>MercañedaNutrición</title>
 
-    <h1>Lista de Productos</h1>
+</head>
+
+<body class="body">
+
+    <header class="top-header">
+        <div class="logo">MERCAÑEDA</div>
+        <nav>
+            <a href="#home">Inicio</a>
+            <a><button class="botonnoticias"onclick="togglePopup()">Noticias</button></a>
+            <a href="#contact">Contacto</a>
+        </nav>
+    </header>
     <div class="container">
         <div id="productos-lista">
             <ul class="productosA">
-                <li class="pollo">Pollo</li>
-                <li class="huevos">Huevos(docenas)</li>
-            </ul>
-            <ul class="productosB">
-                <li>producto</li>
-                <li>producto</li>
-            </ul>
-            <ul class="productosC">
-                <li>producto</li>
-                <li>producto</li>
+                <li>
+                <img class="polloimagen" src="https://cdn.pixabay.com/photo/2024/03/02/15/58/ai-generated-8608868_1280.png"><br>
+                <a class="pollonombre">Pollo</a><br>
+                <button class="botoncomprar"onclick="MostrasLista()">Comprar</button>
+                </li>
+                <li>
+                <img class="huevosimagen" src="https://previews.123rf.com/images/nito500/nito5001106/nito500110600019/9729059-una-docena-de-huevos-marr%C3%B3n-en-un-cart%C3%B3n-de-huevos.jpg">
+                <li class="huevosnombre">Huevos(docenas)</li>
+                <button class="botoncomprar"onclick="MostrasLista()">Comprar</button>
+                </li>
+
+                <li>
+                <img class="atunimagen" src="https://cdn.pixabay.com/photo/2021/08/23/17/32/tuna-6568345_1280.jpg">
+                <li class="Atunnombre">Atún</li>
+                <button class="botoncomprar"onclick="MostrasLista()">Comprar</button>
+                </li>
             </ul>
         </div>
     </div>
-    
+    <div id="popupNoticias" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" id="closePopup">&times;</span>
+        <h3>Noticias para mejorar tu nutrición
+        </h3>
+        <ul>
+            <li><a href="#">Noticia 1</a></li>
+            <li><a href="#">Noticia 2</a></li>
+            <li><a href="#">Noticia 3</a></li>
+            <li><a href="#">Noticia 4</a></li>
+        </ul>
+    </div>
+
+</div>
 </body>
 </html>

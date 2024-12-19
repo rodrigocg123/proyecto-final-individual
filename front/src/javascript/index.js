@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 async function cargarProductos() {
     const response = await fetch('http://localhost:8080/productos');
     const productos = await response.json();
@@ -98,7 +100,33 @@ async function comprarProducto(id, inputCantidad) {
         alert(data); // Mensaje de error (por ejemplo, sin stock)
     }
 }
+const noticiasLink = document.getElementById('noticiasLink');
+const popupNoticias = document.getElementById('popupNoticias');
+const closePopup = document.getElementById('closePopup');
+const overlay = document.getElementById('overlay');
 
-// Cargar productos cuando la página se carga
-cargarProductos();
-</script>
+// Función para abrir la pestaña flotante
+function abrirPestañaNoticias() {
+    popupNoticias.style.display = 'block';  // Mostrar la pestaña flotante
+    overlay.style.display = 'block';  // Mostrar el fondo oscuro
+}
+
+// Función para cerrar la pestaña flotante
+function cerrarPestañaNoticias() {
+    popupNoticias.style.display = 'none';  // Ocultar la pestaña flotante
+    overlay.style.display = 'none';  // Ocultar el fondo oscuro
+}
+
+// Evento para abrir la pestaña flotante cuando se hace clic en el botón de noticias
+noticiasLink.addEventListener('click', function(event) {
+    event.preventDefault();  // Evitar el comportamiento predeterminado del enlace
+    abrirPestañaNoticias();  // Llamar a la función para abrir la pestaña
+});
+
+// Evento para cerrar la pestaña flotante cuando se hace clic en el botón de cierre
+closePopup.addEventListener('click', cerrarPestañaNoticias);
+
+// Evento para cerrar la pestaña flotante si el usuario hace clic fuera de la ventana flotante
+overlay.addEventListener('click', cerrarPestañaNoticias);
+            
+});

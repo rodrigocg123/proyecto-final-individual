@@ -1,19 +1,110 @@
-.productosA{
-    list-style: style none;
+.top-header {
+    background-color: rgb(143, 79, 79);
+    /* Fondo oscuro */
+    color: rgb(143, 235, 143);
+    /* Texto blanco */
+    padding: 10px 0;
+    /* Espaciado arriba y abajo */
+    text-align: center;
+    /* Centra el contenido */
+    font-size: 25px;
+}
+.botonnoticias{
+    background-color: rgb(143, 79, 79);
+    padding: 10px;
+    color: black;
+    cursor: pointer;
+    position: center;
+    align-items: center;
+    height: 50px;
+    /* Altura del botón */
+    font-size: 25px;
+    /* Tamaño del texto dentro del botón */
+    padding: 10px 20px;
+    /* Relleno interno del botón */
+    border: none;
+    /* Sin borde */
+    border-radius: 5px;
+    /* Esquinas redondeadas */
+    cursor: pointer;
+    /* Cursor como mano cuando pasa por encima */
+}
+.top-header .logo {
+    font-size: 60px;
+    font-weight: bold;
+    font-style: oblique;
+    color:black;
+}
 
+.top-header nav {
+    margin-top: 10px;
 }
-.huevos{
-    list-style-image: 🥚;
-}
-.pollo{
-    list-style-image: 🐤;
 
+.top-header nav a {
+    color: black;
+    margin: 0 15px;
+    text-decoration: none;
 }
-.productosC{
 
+.top-header nav a:hover {
+    text-decoration: underline;
+    /* Subraya al pasar el cursor */
 }
+
+.titulo {
+    text-align: center;
+    font-size: 100;
+    font-style: italic;
+}
+
+.pollonombre {
+    font-size: 25;
+    text-align: center;
+}
+
+.polloimagen {
+    width: 450;
+    height: auto;
+    /* Mantiene la relación de aspecto */
+    border-radius: 8px;
+    /* Bordes redondeados */
+}
+
+.huevosnombre {
+    font-size: 25;
+    text-align: center;
+}
+
+.huevosimagen {
+    width: 450;
+    height: auto;
+    /* Mantiene la relación de aspecto */
+    border-radius: 8px;
+    /* Bordes redondeados */
+}
+
+.Atunnombre {
+    font-size: 25;
+    text-align: center;
+}
+
+.atunimagen {
+    width: 450;
+    height: auto;
+    /* Mantiene la relación de aspecto */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    display: center;
+}
+
+.productosA {
+    list-style: none;
+    display: inline-block;
+}
+
 body {
     font-family: Arial, sans-serif;
+    background-color: rgb(170, 162, 162);
 }
 
 #productos-lista {
@@ -29,15 +120,45 @@ body {
     text-align: center;
 }
 
-button {
+.botoncomprar {
     padding: 10px;
     background-color: #4CAF50;
-    color: white;
-    border: none;
+    color: black;
     cursor: pointer;
+    position: center;
+    align-items: center;
+    width: 450px;
+    /* Ancho del botón */
+    height: 50px;
+    /* Altura del botón */
+    font-size: 25px;
+    /* Tamaño del texto dentro del botón */
+    padding: 10px 20px;
+    /* Relleno interno del botón */
+    border: none;
+    /* Sin borde */
+    border-radius: 5px;
+    /* Esquinas redondeadas */
+    background-color: #4CAF50;
+    /* Color de fondo */
+    cursor: pointer;
+    /* Cursor como mano cuando pasa por encima */
 }
 
 button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+.producto button:hover {
+    background-color: grey;
+}
+
+.container {
+    text-align: center;
+    margin: 0;
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
 }
