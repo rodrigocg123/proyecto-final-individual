@@ -68,6 +68,7 @@ function mostrarLista(tipoProducto) {
 }
 
 
+
 // Actualizar la cantidad de un producto
 function actualizarCantidad(id, tipoProducto, cambio) {
     const producto = productos[tipoProducto].find(p => p.id === id);
