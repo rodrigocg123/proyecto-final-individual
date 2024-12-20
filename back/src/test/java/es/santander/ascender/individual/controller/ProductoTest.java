@@ -1,10 +1,12 @@
 package es.santander.ascender.individual.model;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
+import java.util.Map;
 public class ProductoTest {
-
+    @SpringBootTest
+    @AutoConfigureMockMvc
     @Test
     public void testProductoConstructor() {
         // Crea un producto con el constructor

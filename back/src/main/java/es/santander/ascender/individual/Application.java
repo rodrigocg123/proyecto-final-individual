@@ -10,12 +10,4 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-
-	// @Bean
-    // public OpenAPI customOpenAPI() {
-    //     return new OpenAPI()
-    //             .info(new Info().title("Mi API")
-    //             .description("Descripción de mi API")
-    //             .version("1.0"));
-    // }
 }

@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import java.util.Map;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -71,9 +71,10 @@ public class ProductoControllerIntegrationTest {
 
                 mockMvc.perform(MockMvcRequestBuilders.get("/productos/1"))
                                 .andExpect(status().isOk())
-                                .andExpect(MockMvcResultMatchers.jsonPath("$.nombre").value("Producto A"));
+                                .andExpect(MockMvcResultMatchers.jsonPath("$.nombre").value("Producto A"))
+                                .andExpect(MockMvcResultMatchers.jsonPath("$.precio").value(100.0))
+                                .andExpect(MockMvcResultMatchers.jsonPath("$.cantidad").value(10));
         }
-
         @Test
         void testObtenerProductoNoExistente() throws Exception {
                 mockMvc.perform(MockMvcRequestBuilders.get("/productos/999"))
@@ -82,14 +83,15 @@ public class ProductoControllerIntegrationTest {
 
         @Test
         void testComprarProductoConStock() throws Exception {
-                // Crear el producto
                 mockMvc.perform(MockMvcRequestBuilders.post("/productos")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(producto1)))
                                 .andExpect(status().isCreated());
 
                 // Comprar el producto (debe reducir el stock)
-                mockMvc.perform(MockMvcRequestBuilders.post("/productos/1/compra"))
+                mockMvc.perform(MockMvcRequestBuilders.post("/productos/1/compra")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"cantidad\": 1}"))
                                 .andExpect(status().isOk())
                                 .andExpect(MockMvcResultMatchers.content()
                                                 .string("Compra realizada con éxito. Producto: Producto A"));
@@ -153,5 +155,25 @@ public class ProductoControllerIntegrationTest {
                 // Verificar que el producto ya no existe
                 mockMvc.perform(MockMvcRequestBuilders.get("/productos/1"))
                                 .andExpect(status().isNotFound());
+        }
+
+        @Test
+        //test para verificar que la API devuelve los productos bien
+        void testObtenerProductos() throws Exception {
+                // Crear productos
+                mockMvc.perform(MockMvcRequestBuilders.post("/productos")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(producto1)))
+                                .andExpect(status().isCreated());
+                mockMvc.perform(MockMvcRequestBuilders.post("/productos")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(producto2)))
+                                .andExpect(status().isCreated());
+
+                // Obtener todos los productos
+                mockMvc.perform(MockMvcRequestBuilders.get("/productos"))
+                                .andExpect(status().isOk())
+                                .andExpect(MockMvcResultMatchers.jsonPath("$[0].nombre").value("Producto A"))
+                                .andExpect(MockMvcResultMatchers.jsonPath("$[1].nombre").value("Producto B"));
         }
 }

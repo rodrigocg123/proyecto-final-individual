@@ -51,7 +51,7 @@ $(document).ready(function () {
             cantidadContenedor.appendChild(botonSumar);
 
             // Crear el botón de compra
-            const botonCompra = document.createElement('botoncomprar    ');
+            const botonCompra = document.createElement('botoncomprar');
             botonCompra.textContent = 'Comprar';
             botonCompra.disabled = producto.cantidad <= 0;  // Deshabilitar si no hay stock
             botonCompra.onclick = () => comprarProducto(producto.id, inputCantidad);

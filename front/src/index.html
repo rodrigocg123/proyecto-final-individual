@@ -16,33 +16,58 @@
     <header class="top-header">
         <div class="logo">MERCAÑEDA</div>
         <nav>
-            <a href="#home">Inicio</a>
+            <a href="http://localhost:1234/">Inicio</a>
             <a><button id="closePopup"class="botonnoticias"onclick="togglePopup()">Noticias</button></a>
         </nav>
     </header>
     <div class="container">
         <div id="productos-lista">
-            <ul class="productosA">
-                <li>
+            <table class="productosA">
+                <tr>
+                <td>
                 <img class="polloimagen" src="https://cdn.pixabay.com/photo/2024/03/02/15/58/ai-generated-8608868_1280.png"><br>
-                <a class="pollonombre">Pollo</a><br>
-                <button class="botoncomprar"onclick="MostrasLista()">Comprar</button>
-                </li>
-                <li>
+                </td>
+                <td class="Detallesproducto"><a href="https://canduran.com/beneficios-propiedades-pollo/#:~:text=Por%20cada%20100g%20de%20pollo,Grasa%20g%207%2C7" target="_blank">DETALLES DEL PRODUCTO</a><br><br><a>Precio:9,47 € IVA Incl.</a><br><br><a>Stock:</a></td>
+                <td>
+                <button class="botoncomprar"onclick="MostrasLista()">Añadir a la Cesta</button>
+                </td>
+                </tr>
+                <tr>
+                <td>
                 <img class="huevosimagen" src="https://previews.123rf.com/images/nito500/nito5001106/nito500110600019/9729059-una-docena-de-huevos-marr%C3%B3n-en-un-cart%C3%B3n-de-huevos.jpg">
-                <li class="huevosnombre">Huevos(docenas)</li>
-                <button class="botoncomprar"onclick="MostrasLista()">Comprar</button>
-                </li>
-
-                <li>
+                </td>
+                <td class="Detallesproducto"><a href="https://www.institutohuevo.com/composicion-nutricional-del-huevo/#:~:text=La%20clara%20contiene%20principalmente%20agua,la%20nutrici%C3%B3n%20y%20la%20salud." target="_blank">DETALLES DEL PRODUCTO</a><br><br><a>Precio:3,52 €/docena</a><br><br><a>Stock:</a></td>
+               
+                <td><button class="botoncomprar"onclick="MostrasLista()">Añadir a la Cesta</button</td>
+                
+                </tr>
+                <tr>
+                <td> 
                 <img class="atunimagen" src="https://cdn.pixabay.com/photo/2021/08/23/17/32/tuna-6568345_1280.jpg">
-                <li class="Atunnombre">Atún</li>
+                <td class="Detallesproducto"><a href="https://www.lavanguardia.com/comer/pescados/20210329/6608880/atun-propiedades-beneficios-valor-nutricional.html#:~:text=El%20at%C3%BAn%20es%20rico%20en,%2C%20magnesio%2C%20hierro%20y%20yodo."target="_blank">DETALLES DEL PRODUCTO</a><br><br><a>Precio:37,50€/kg</a><br><br><a>Stock:</a></td>
+                </td>
+                <td><button class="botoncomprar"onclick="MostrasLista()">Añadir a la Cesta</button></td>
+                </tr>
+            </table>
+        </div>
+        <table class="cestacompra">
+            <td class="titulocestacompra">Cesta de la compra</td>
+            <tr>
+            <td class="articulos" id="productos-lista">
+                Aqui van los productos:
+            </td>
+            </tr>
+            <tr>
+            <td class="zona Comprar" id="Comprar">
                 <button class="botoncomprar"onclick="MostrasLista()">Comprar</button>
-                </li>
-            </ul>
+            </td>
+        </tr>
+        </table>
+        <div>
+
         </div>
     </div>
-    <div id="popupNoticias" class="popup">
+    <!-- <div id="popupNoticias" class="popup">
     <div class="popup-content">
         <span class="close-btn" id="closePopup">&times;</span>
         <h3>Noticias para mejorar tu nutrición</h3>
@@ -54,6 +79,6 @@
         </ul>
     </div>
 
-</div>
+    </div> -->
 </body>
 </html>

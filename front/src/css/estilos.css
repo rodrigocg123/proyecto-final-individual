@@ -60,9 +60,13 @@
 .pollonombre {
     font-size: 25;
     text-align: center;
+    border: white;
+    background-color: white;
 }
 
 .polloimagen {
+    float: left;  /* Para alinear la imagen a la izquierda */
+    margin-right: 20px;  /* Espacio entre la imagen y el texto u otros elementos */
     width: 450;
     height: auto;
     /* Mantiene la relación de aspecto */
@@ -73,22 +77,32 @@
 .huevosnombre {
     font-size: 25;
     text-align: center;
+    border: white;
+    background-color: white;
 }
 
 .huevosimagen {
+    float: right;  /* Para alinear la imagen a la izquierda */
+    margin-right: 20px;  /* Espacio entre la imagen y el texto u otros elementos */
     width: 450;
     height: auto;
     /* Mantiene la relación de aspecto */
     border-radius: 8px;
     /* Bordes redondeados */
 }
-
+.Detallesproducto{
+    font-size: 20;
+}
 .Atunnombre {
-    font-size: 25;
+    font-size: 20;
     text-align: center;
+    border: white;
+    background-color: white;
 }
 
 .atunimagen {
+    float: center;  /* Para alinear la imagen a la izquierda */
+    margin-right: 20px;  /* Espacio entre la imagen y el texto u otros elementos */
     width: 450;
     height: auto;
     /* Mantiene la relación de aspecto */
@@ -104,7 +118,12 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: rgb(170, 162, 162);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 }
 
 #productos-lista {
@@ -155,6 +174,8 @@ button:disabled {
 }
 
 .container {
+    float: left;  /* Para alinear la imagen a la izquierda */
+    margin-right: 20px;  /* Espacio entre la imagen y el texto u otros elementos */
     text-align: center;
     margin: 0;
     justify-content: center;
@@ -162,3 +183,28 @@ button:disabled {
     align-items: center;
     /* Centra verticalmente */
 }
+.titulocestacompra{
+    font-size: 25px;
+    color: black;
+    border: 1px solid black;
+    padding: 20px; /* Espacio de 20 píxeles dentro de las celdas */
+}
+.articulos{
+    border: 1px solid black;
+    padding: 20px; /* Espacio de 20 píxeles dentro de las celdas */
+    font-size: 25px;
+    text-align: center;
+
+}
+.botoncomprar{
+    width: 100%;
+}
+.cestacompra{
+    border: 1px solid black;
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 20px; /* Espacio de 20 píxeles dentro de las celdas */
+    width: 100%;
+    height: 100%;
+}
+   
